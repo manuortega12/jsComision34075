@@ -2,20 +2,29 @@ let carro = 0
 let suma = 0
 
 
-function opcion(op) {
-    op = parseInt(prompt('ingrese un producto')) 
-    return op
-}
+// function opcion(op) {
+//     op = parseInt(prompt('ingrese un producto')) 
+//     return op
+// }
 
-alert(`Seleccione cualquiera de los siguientes productos
+function opcion(op) {
+    op = parseInt(prompt(`Seleccione cualquiera de los siguientes productos
     1- Monitor - $30000
     2- Teclado - $5000
     3- Mouse - $3000
-    4- Salir`)     
+    4- Salir`))      
+    return op
+
+}
+
+// alert(`Seleccione cualquiera de los siguientes productos
+//     1- Monitor - $30000
+//     2- Teclado - $5000
+//     3- Mouse - $3000
+//     4- Salir`)     
 
 let num = opcion()
 while (num !== 4) {
-
     if (num === 1) {
         carro = 30000
         suma = suma + carro
