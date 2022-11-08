@@ -14,9 +14,9 @@ class NewProduct {
 	}
 }
 
-const monitor = new NewProduct(1,'monitor samsung',30000,2)
-const teclado = new NewProduct(2,'teclado hyperx',5000,5)
-const mouse = new NewProduct(3,'mouse reddragon',3000,10)
+const monitor = new NewProduct(1,'monitor samsung',30000)
+const teclado = new NewProduct(2,'teclado hyperx',5000)
+const mouse = new NewProduct(3,'mouse reddragon',3000)
 
 function opcion(op) {
     op = parseInt(prompt(`Seleccione cualquiera de los siguientes productos
