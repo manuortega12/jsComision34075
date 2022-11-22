@@ -1,66 +1,83 @@
-let carro = 0
-let suma = 0
-let cantMonitor = 0
-let cantTeclado = 0
-let cantMouse = 0
-
-const prodArray = []
 
 class NewProduct {
-	constructor(id,name,price){
+	constructor(id,name,price, imgSrc){
 		this.id = id
 		this.name = name
 		this.price = price
+        this.imgSrc = imgSrc
 	}
 }
 
-const monitor = new NewProduct(1,'monitor samsung',30000)
-const teclado = new NewProduct(2,'teclado hyperx',5000)
-const mouse = new NewProduct(3,'mouse reddragon',3000)
+const monitor = new NewProduct(1,'Monitor Samsung',30000, 'https://images.fravega.com/f500/32397e21c5240c13f2d32ad3842cd3e8.jpg')
+const teclado = new NewProduct(2,'Teclado Hyperx',5000,'https://app.contabilium.com/files/explorer/16277/Productos-Servicios/concepto-6489042.jpeg')
+const mouse = new NewProduct(3,'Mouse Reddragon',3000,'https://www.venex.com.ar/products_images/1582916326_m7191.png')
 
-function opcion(op) {
-    op = parseInt(prompt(`Seleccione cualquiera de los siguientes productos
-    1- Monitor - $30000
-    2- Teclado - $5000
-    3- Mouse - $3000
-    4- Salir`))      
-    return op
+const productos = [monitor, teclado, mouse]
+
+let carrito = []
+
+const cardContainer = document.querySelector('#cardContainer')
+
+productos.forEach((producto) => {
+    const card = document.createElement('div')
+    card.className = 'card'
+    card.innerHTML = `
+    <h3 class="cardTitle">${producto.name} </h3>
+    <img src="${producto.imgSrc}" class="cardImg">
+    <span class="cardPrice"> $${producto.price} </span>
+    <button data-id="${producto.name}" class="buttonCTA"> Agregar al Carrito </button>
+    `
+    cardContainer.append(card)
+})
+
+const cartContainer = document.querySelector('#cartContainer')
+
+
+const imprimirCarrito = () => {
+    cartContainer.innerHTML = ''
+    carrito.forEach((producto) => {
+        const cartRow = document.createElement('div')
+        cartRow.className = 'cartRow'
+        cartRow.innerHTML = `
+        <div class="cartImg">
+        <img src="${producto.imgSrc}">
+        </div>
+        <div class="cartTitle"><span> Monitor ${producto.name}</span></div>
+        <div class="cartPrice"><span> $${producto.price}</span></div>
+        `
+        cartContainer.append(cartRow)
+    })
+} 
+
+const agregarProducto = (e) => {
+
+    const productoElegido = e.target.getAttribute('data-id')
+
+    const producto = productos.find((producto) => producto.name == productoElegido)
+
+    carrito.push(producto)
+    imprimirCarrito()
+    localStorage.setItem('carrito', JSON.stringify(carrito))
 }
 
-let num = opcion()
-while (num !== 4) {
-    if (num === 1) {
-        carro = monitor.price
-        suma = suma + carro
-        cantMonitor += 1
-        prodArray.push(monitor)
-    } else if (num === 2) {
-        carro = teclado.price
-        suma = suma + carro
-        cantTeclado += 1
-        prodArray.push(teclado)
-    } else if (num === 3) {
-        carro = mouse.price
-        suma = suma + carro
-        cantMouse += 1
-        prodArray.push(mouse)
-    } else {
-        alert('no eligio ningun producto')
+const botonesCompra = document.querySelectorAll('.buttonCTA')
+botonesCompra.forEach((botonCompra) => {
+    botonCompra.addEventListener('click', agregarProducto)
+})
+
+
+if (localStorage.getItem('carrito')) {
+    carrito = JSON.parse(localStorage.getItem('carrito'))
+    imprimirCarrito()
+}
+
+const vaciarCarrito = () => {
+    if (localStorage.getItem('carrito')) {
+        localStorage.removeItem('carrito')
     }
-    num = opcion()    
+    carrito = []
+    imprimirCarrito()
 }
 
-
-if (cantMonitor != 0) {
-    console.log('usted eligio ' + cantMonitor + ' ' + monitor.name);
-}
-if (cantTeclado != 0) {
-    console.log('usted eligio ' + cantTeclado + ' ' + teclado.name);
-}
-if (cantMouse != 0) {
-    console.log('usted eligio ' + cantMouse + ' ' + mouse.name);
-}
-console.log('usted tiene en el carrito ' + prodArray.length + ' productos');
-console.log('el total de su carrito de compra es de ' + suma);
-
-
+const vaciarCarritoBtn = document.querySelector('#vaciarCarrito')
+vaciarCarritoBtn.addEventListener('click', vaciarCarrito)
