@@ -1,0 +1,19 @@
+{
+  "name": "primer-entrega",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/manuortega12/jsComision34075.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/manuortega12/jsComision34075/issues"
+  },
+  "homepage": "https://github.com/manuortega12/jsComision34075#readme",
+  "description": ""
+}

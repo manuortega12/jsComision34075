@@ -1,10 +1,20 @@
 body {
+    
     font-family: Arial;
     text-align: center;
     padding-top: 50px;
+    font-family: 'Dosis', sans-serif;
+    font-family: 'Nerko One', cursive;
 }
 
-/* CARDS */
+.fuente1 {
+    font-weight: bold;
+    font-size: 4.5rem;
+}
+
+header {
+    z-index: 100;
+}
 
 .cardContainer {
     display: flex;
@@ -31,25 +41,23 @@ body {
 }
 
 .buttonCTA {
-    margin: 10px 0;
-    background-color: rgb(216, 77, 77);
-    color: rgb(247, 247, 247);
-    font-size: 20px;
-    font-weight: 500;
-    padding: 10px 15px;
-    border: none;
-    border-radius: 10px;
-    cursor: pointer;
+    
+        background-color: #4CAF50; /* Green */
+        border: none;
+        color: white;
+        padding: 15px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        border-radius: 8px;
+    
 }
 
 .buttonCTA:hover {
-    background-color: rgb(184, 64, 64);
+    background-color: rgb(51, 39, 167);
     box-shadow: 1px 1px 10px lightgrey;
 }
-
-
-
-/* CART */
 
 .cartContainer {
     margin-bottom: 100px;
@@ -94,8 +102,6 @@ body {
     width: 25%;
 }
 
-
-/* FORM */
 
 .formContainer {
     width: 100%;
